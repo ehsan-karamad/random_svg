@@ -1,0 +1,20 @@
+<body>
+<script>
+var index = window.location.search.substr(1);
+for(var i = 0; i < index; ++i) {
+  ['r', 'c'].forEach((c) => {
+    ['svg', 'png'].forEach((e) => {
+      var name = c + '_' + i + '.' + e;
+      var img = document.createElement("img");
+      img.src = name;
+      if (e === "svg") {
+        img.style.border = "solid green";
+      } else {
+        img.style.border = "solid red";
+      }
+      document.body.appendChild(img);
+    });
+  });
+}
+</script>
+</body>

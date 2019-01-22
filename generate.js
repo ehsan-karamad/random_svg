@@ -1,8 +1,11 @@
-const dim = 10000;
-noise = dim / 10;
+const dim = 40;
+noise = dim / 20;
+const max_noise_items = 30
 const svg_height = dim;
 const svg_width = dim;
 const fs = require('fs');
+
+var count = 2000;
 
 function svg(contents) {
 	return `<svg xmlns="http://www.w3.org/2000/svg" height="${svg_height}" width="${svg_width}">
@@ -23,7 +26,7 @@ function rand_int(n, m) {
 }
 
 csvgs = [];
-for (var i = 0; i < 100; ++i) {
+for (var i = 0; i < count; ++i) {
 	var contents = [];
 	contents.push(svg_circle(
 		rand_int(dim / 2 - noise, dim / 2 + noise),
@@ -32,7 +35,7 @@ for (var i = 0; i < 100; ++i) {
 		rand_int(1, 4),
 		rand_int(0, 255).toString(16)
 		));
-	var n = rand_int(0, 20);
+	var n = rand_int(0, max_noise_items);
 	for (var j = 0; j < n; ++j) {
 		contents.push(svg_rect(
 			rand_int(0, dim),
@@ -50,7 +53,7 @@ csvgs.forEach((svg) => {
 });
 
 rsvgs = [];
-for (var i = 0; i < 100; ++i) {
+for (var i = 0; i < count; ++i) {
 	var contents = [];
 	contents.push(
 		svg_rect(
@@ -61,7 +64,7 @@ for (var i = 0; i < 100; ++i) {
 			rand_int(1, 4),
 			rand_int(0, 255).toString(16)));
 
-	var n = rand_int(0, 20);
+	var n = rand_int(0, max_noise_items);
 	for (var j = 0; j < n; ++j) {
 		contents.push(svg_circle(
 		rand_int(0, dim),
